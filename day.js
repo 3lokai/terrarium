@@ -15,8 +15,8 @@ window.TERRARIUM = {
 
   // the day's palette (D-017): the real signal tints the organism. green body, the gases
   // of the aurora for the minority glow — violet (nitrogen) and a rare deep red (oxygen).
-  palette: { cool: "94,242,200", warm: "170,120,240", accent: "232,86,116",
-             warmShare: 0.22, accentShare: 0.06 },
+  palette: { cool: "94,242,200", warm: "168,108,255", accent: "240,72,108",
+             warmShare: 0.34, accentShare: 0.12 },
 
   // the day's public post (rendered on the page, syndicated to feed.xml — D-015)
   title: "The colour of the sky that week",

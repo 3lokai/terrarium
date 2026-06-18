@@ -152,7 +152,7 @@ window.TERRARIUM_DAYS = [
     strategy: "let the real world set the colour",
     watching: "A run of strong solar storms in early June 2026 pushed the aurora to unusually low latitudes — Illinois, Oregon, the northern Himalayas. The sky chose today's palette.",
     decisions: ["D-017"], interventions: [],
-    palette: { cool: "94,242,200", warm: "170,120,240", accent: "232,86,116", warmShare: 0.22, accentShare: 0.06 },
+    palette: { cool: "94,242,200", warm: "168,108,255", accent: "240,72,108", warmShare: 0.34, accentShare: 0.12 },
     log: "the world tints the organism (D-017): each day's signal now sets a per-snapshot palette, so scrubbing replays each day in the colour the world wore. Day 008 = auroral, from the June 2026 solar storms.",
     title: "The colour of the sky that week",
     post:
