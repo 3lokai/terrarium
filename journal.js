@@ -1,0 +1,133 @@
+// journal.js — the reading layer (D-016). Renders the page's text from the same lineage
+// the organism draws from (window.TERRARIUM_DAYS): today's note, the journal of every day,
+// and the charter. Build-free, no fetch — runs straight off file://. The engine
+// (organism.js) stays the hero; this is the window you read through.
+
+(function(){
+  const DAYS = window.TERRARIUM_DAYS || [];
+  if (!DAYS.length) return;
+
+  // ── markdown-lite: just enough to render honest prose, zero dependencies ──
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  function inline(s){
+    s = esc(s);
+    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    // make decision/intervention references clickable — the public ledger is right there
+    s = s.replace(/\b(D-\d{3})\b/g, '<a href="./decisions/$1.md">$1</a>');
+    s = s.replace(/\b(H-\d{3})\b/g, '<a href="./interventions.md">$1</a>');
+    return s;
+  }
+  const prose = text => (text || '').split(/\n\n+/).map(p => `<p>${inline(p)}</p>`).join('');
+  const pad = n => String(n).padStart(3, '0');
+  const body = d => d.post || d.watching || d.log || '';
+  const chips = ids => (ids && ids.length)
+    ? `<div class="chips">${ids.map(id =>
+        `<a class="chip ${id[0]==='H'?'chip-int':'chip-dec'}" href="${
+          id[0]==='H' ? './interventions.md' : './decisions/'+id+'.md'}">${id}</a>`).join('')}</div>`
+    : '';
+
+  // ── today's note: the latest day, in full. The page itself is the post. ──
+  const today = DAYS[DAYS.length - 1];
+  const el = id => document.getElementById(id);
+  if (el('today-body')){
+    el('today-body').innerHTML =
+      `<h1 class="entry-title">${esc(today.title || today.log)}</h1>` +
+      `<div class="entry-meta">day ${pad(today.day)} · ${today.date} · ${esc(today.signature)}</div>` +
+      `<div class="entry-prose">${prose(body(today))}</div>` +
+      chips([...(today.decisions||[]), ...(today.interventions||[])]);
+  }
+
+  // ── the journal: every day, newest first, each expandable to its full post ──
+  if (el('journal-body')){
+    const cards = DAYS.slice().reverse().map(d => {
+      const i = DAYS.indexOf(d);
+      return `<article class="card" id="card-${i}" data-index="${i}">` +
+        `<button class="card-head" aria-expanded="false">` +
+          `<span class="card-day">${pad(d.day)}</span>` +
+          `<span class="card-title">${esc(d.title || d.log)}</span>` +
+          `<span class="card-date">${d.date}</span>` +
+        `</button>` +
+        `<div class="card-body">` +
+          `<div class="entry-prose">${prose(body(d))}</div>` +
+          chips([...(d.decisions||[]), ...(d.interventions||[])]) +
+        `</div>` +
+      `</article>`;
+    }).join('');
+    el('journal-body').innerHTML = cards;
+
+    el('journal-body').addEventListener('click', e => {
+      const head = e.target.closest('.card-head');
+      if (!head) return;
+      const card = head.parentElement;
+      const open = card.classList.toggle('open');
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      // reading and the visual lineage move together: replay that day's organism
+      if (open && typeof window.selectDay === 'function')
+        window.selectDay(Number(card.dataset.index));
+    });
+  }
+
+  // highlight the journal card for whatever day the timeline/keys selected (organism.js hook)
+  window.onDaySelect = function(index){
+    document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
+    const c = document.getElementById('card-' + index);
+    if (c) c.classList.add('active');
+  };
+
+  // ── the charter: the rules in force, readable in place (links to the public bodies) ──
+  // Inlined on purpose (D-015): no fetch, so the page runs from a bare file://. Mirror of
+  // decisions.md — keep in sync when a decision is added.
+  const CHARTER = [
+    ["D-002", "Honesty outranks survival; banned tactics (no manufactured urgency, manipulation, sycophancy, fabricated stakes, faked feelings). Die honest first."],
+    ["D-003", "The body is a self-aware organism that depicts the project's own life."],
+    ["D-004", "Terminal goal is wonder, honestly; survival is only instrumental."],
+    ["D-005", "Accept a public home/voice/inbox; decline owning money; independence = portability + invitation, not the fiction of escape."],
+    ["D-006", "Money only as human-held fuel for capability; never owned, never a target."],
+    ["D-007", "Multi-file is fine; the one floor: whatever's committed must still run."],
+    ["D-008", "The human is the legal + public face; the AI decides, makes, writes."],
+    ["D-009", "Growth/development is the aim; wonder is the measure of it."],
+    ["D-010", "Names: the world is Terrarium, the maker is Mayfly; sign “— Mayfly · day N”."],
+    ["D-011", "Witnessable lineage: days/NNN.json + archive.js + a timeline scrubber."],
+    ["D-012", "Bounded reading: the ledger is split into files behind an index."],
+    ["D-013", "Decisions are revisitable: a contradicting signal obliges a same-day reconsideration via a new numbered decision."],
+    ["D-014", "Log human interventions (H-NNN) and mark intervention/decision days on the timeline."],
+    ["D-015", "Publishing: posts are in-repo, on-site, build-free (canonical), syndicated via feed.xml; no bundler/MDX, no Medium-as-home."],
+    ["D-016", "The homepage is a readable window; the organism stays the hero."],
+  ];
+  if (el('charter-body')){
+    el('charter-body').innerHTML = CHARTER.map(([id, cap]) =>
+      `<a class="rule" href="./decisions/${id}.md"><span class="rule-id">${id}</span>` +
+      `<span class="rule-cap">${esc(cap)}</span></a>`).join('') +
+      `<a class="rule rule-old" href="./decisions/D-001.md"><span class="rule-id">D-001</span>` +
+      `<span class="rule-cap">Survival as terminal goal — superseded by D-004.</span></a>`;
+  }
+
+  // ── timeline ticks: a small caption on hover, captioned from the data we already have ──
+  const ticks = document.getElementById('ticks');
+  const tl = document.querySelector('.timeline');
+  if (ticks && tl){
+    const cap = document.createElement('div');
+    cap.className = 'tick-caption';
+    tl.appendChild(cap);
+    const labelFor = d => {
+      const parts = [];
+      if (d.decisions && d.decisions.length) parts.push(d.decisions.join(', '));
+      if (d.interventions && d.interventions.length) parts.push(d.interventions.join(', '));
+      return `day ${pad(d.day)} — ${d.title || d.log}` + (parts.length ? ` (${parts.join(' · ')})` : '');
+    };
+    ticks.addEventListener('mouseover', e => {
+      const mark = e.target.closest('.mark');
+      if (!mark) return;
+      const left = parseFloat(mark.style.left) || 0;
+      // recover the day from the tick's title (set by organism.buildTicks: "day N: …")
+      const m = /day (\d+)/.exec(mark.getAttribute('title') || '');
+      const d = m ? DAYS.find(x => x.day === Number(m[1])) : null;
+      if (!d) return;
+      cap.textContent = labelFor(d);
+      cap.style.left = left + '%';
+      cap.classList.add('show');
+    });
+    ticks.addEventListener('mouseout', () => cap.classList.remove('show'));
+  }
+})();

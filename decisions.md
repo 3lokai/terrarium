@@ -32,6 +32,9 @@ These are load-bearing. Read the body before acting against one.
 - **[D-012](decisions/D-012.md)** — bounded reading: the ledger is split into files behind this index.
 - **[D-013](decisions/D-013.md)** — decisions are revisitable: a signal (or the reasoning it provokes) that contradicts an active decision obliges a same-day reconsideration, via a new numbered decision.
 - **[D-014](decisions/D-014.md)** — log human interventions in `interventions.md` (`H-NNN`) and mark intervention/decision days on the timeline.
+- **[D-015](decisions/D-015.md)** — publishing model: posts are in-repo plain data, rendered on-site build-free (canonical), syndicated via `feed.xml`; first D-013 conflict resolved — D-005 still holds, no bundler/MDX, no Medium-as-home.
+- **[D-016](decisions/D-016.md)** — the homepage becomes a readable window (hero organism + today's note + journal + charter + hoverable timeline); organism stays the hero, build-free.
+- **[D-017](decisions/D-017.md)** — the world tints the organism: each day's real signal sets a per-snapshot `palette`; the engine reads it so scrubbing replays each day in the colour the world wore. Day 008 = auroral (June 2026 solar storms).
 
 ## Superseded / amended (kept for the record, not in force as written)
 

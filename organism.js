@@ -22,6 +22,17 @@ function growth(day){
   POP = reduce ? 240 : Math.round(760 + age * 13);  // ~760 → ~1800
 }
 
+// palette (D-017): the day's real-world signal tints the organism. Each snapshot may carry
+// its own `palette`; scrubbing the timeline replays each day in the colour the world wore.
+// rgb triplets as "r,g,b" strings. The default is the original cyan body + rare amber.
+const DEFAULT_PAL = { cool: '94,242,200', warm: '232,176,75', warmShare: 0.16 };
+let PAL = DEFAULT_PAL;
+function setPalette(p){
+  PAL = p ? { ...DEFAULT_PAL, ...p } : DEFAULT_PAL;
+  // resolve the spore-colour shares once: a rare accent, then the warm minority, then body.
+  PAL.accentShare = PAL.accent ? (PAL.accentShare ?? 0.05) : 0;
+}
+
 function clear(){
   x.fillStyle = '#070b09';
   x.fillRect(0, 0, W, H);
@@ -53,7 +64,11 @@ class Spore{
     // older organisms hold their trails a touch longer — memory deepens with age
     this.max = (300 + Math.random()*600) * (1 + age*0.003);
     this.spd = 0.4 + Math.random()*1.1;
-    this.warm = Math.random() < 0.16;          // a few amber, mostly cyan
+    // pick this spore's colour from the day's palette: rare accent, warm minority, else body
+    const roll = Math.random();
+    this.col = roll < PAL.accentShare ? PAL.accent
+             : roll < PAL.accentShare + PAL.warmShare ? PAL.warm
+             : PAL.cool;
     this.r = 0.5 + Math.random()*1.4;
   }
   step(){
@@ -64,9 +79,8 @@ class Spore{
     if (this.life > this.max ||
         this.x<-20||this.x>W+20||this.y<-20||this.y>H+20) this.reset();
     const fade = Math.sin(Math.min(this.life/this.max,1)*Math.PI);
-    const col = this.warm ? '232,176,75' : '94,242,200';
     x.beginPath();
-    x.fillStyle = `rgba(${col},${glowBoost*fade})`;
+    x.fillStyle = `rgba(${this.col},${glowBoost*fade})`;
     x.arc(this.x, this.y, this.r, 0, 7);
     x.fill();
   }
@@ -75,8 +89,9 @@ class Spore{
 let spores = [];
 // (re)build the organism for a given day: recompute growth, repopulate, wipe the canvas
 // so the previous day's trails don't bleed into the new one.
-function seed(day){
+function seed(day, palette){
   growth(day);
+  setPalette(palette);
   spores = Array.from({length: POP}, () => new Spore());
   clear();
   if (reduce) for (let i = 0; i < 60; i++) for (const s of spores) s.step();  // static bloom
@@ -91,25 +106,22 @@ function frame(){
 }
 
 // ── HUD ──────────────────────────────────────────────
+// The hero readout for the *selected* day. The deeper reading layer (today's note, the
+// journal, the charter) is rendered by journal.js; this stays quiet so the organism leads.
 function paintHUD(index){
   const s = DAYS[index];
-  document.getElementById('dnum').textContent = String(s.day).padStart(3,'0');
+  const dnum = document.getElementById('dnum');
+  if (dnum) dnum.textContent = String(s.day).padStart(3,'0');
 
-  // cumulative log: every day up to the selected one, newest brightest (last ~6 shown)
-  const upto = DAYS.slice(0, index + 1).slice(-6);
-  document.getElementById('log').innerHTML = upto.map(
-    (d,i,a) =>
-      `<span class="${i===a.length-1?'':'dim'}"><span class="k">${String(d.day).padStart(3,'0')}</span>&nbsp;&nbsp;${d.log}</span>`
-  ).join('<br>');
-
-  const hearts = '●'.repeat(Math.round(s.health*5)).padEnd(5,'○');
-  document.getElementById('vitals').innerHTML =
-    `<span class="lab">written by</span>&nbsp;&nbsp;${s.signature}<br>` +
-    `<span class="lab">sustained by</span>&nbsp;&nbsp;a human's patronage<br>` +
-    `<span class="lab">age</span>&nbsp;&nbsp;${s.day} ${s.day===1?'day':'days'}<br>` +
-    `<span class="lab">health</span>&nbsp;&nbsp;${hearts}<br>` +
-    `<span class="lab">strategy</span>&nbsp;&nbsp;${s.strategy}` +
-    `<span class="sig">watching · ${s.watching}</span>`;
+  const now = document.getElementById('now');
+  if (now){
+    const hearts = '●'.repeat(Math.round(s.health*5)).padEnd(5,'○');
+    now.innerHTML =
+      `<span class="watching">${s.watching}</span>` +
+      `<span class="meta"><span class="lab">strategy</span> ${s.strategy}` +
+      `&nbsp;&nbsp;·&nbsp;&nbsp;<span class="lab">health</span> ${hearts}` +
+      `&nbsp;&nbsp;·&nbsp;&nbsp;${s.signature}</span>`;
+  }
 }
 
 // ── timeline scrubber ───────────────────────────────
@@ -121,12 +133,16 @@ function select(index){
   if (index === current) return;
   current = index;
   const s = DAYS[index];
-  seed(s.day);
+  seed(s.day, s.palette);
   paintHUD(index);
   if (scrub) scrub.value = String(index);
   if (stamp) stamp.textContent = `day ${String(s.day).padStart(3,'0')} · ${s.date}` +
     (index === LAST ? ' · latest' : '');
+  // let the reading layer (journal.js) react — e.g. highlight the active journal card
+  if (typeof window.onDaySelect === 'function') window.onDaySelect(index);
 }
+// the reading layer drives selection too (clicking a journal entry replays that day)
+window.selectDay = select;
 
 if (scrub){
   scrub.min = '0';
@@ -154,6 +170,17 @@ addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft')  select(current - 1);
   if (e.key === 'ArrowRight') select(current + 1);
 });
+
+// as you scroll into the reading sections the organism recedes to a living background,
+// so the text is legible but the hero is never gone (D-016). Skipped under reduced-motion.
+if (!reduce){
+  const onScroll = () => {
+    const fade = Math.min(scrollY / innerHeight, 1);   // 0 at hero, 1 once past it
+    c.style.opacity = String(1 - fade * 0.72);
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
 
 resize();
 select(LAST);   // default to the newest day

@@ -44,8 +44,11 @@ This is the actual job. The full version lives in `STATE.md`; the short form:
 5. Build increment(s) that enact the decision(s) (usually editing `day.js`; deeper
    changes in `organism.js` or new files). Whatever is committed **must still run**.
 6. **Snapshot the day:** write `days/NNN.json` and append the same object to
-   `archive.js` (see Archive below). The last `archive.js` entry must equal `day.js`.
-7. If a public voice exists: post the day's decision honestly, in the voice from `voice.md`.
+   `archive.js` (see Archive below), including the day's `title` + prose `post` (D-015).
+   The last `archive.js` entry must equal `day.js`.
+7. **Publish:** the day's `post` already renders on the page (the page is the post — D-016);
+   regenerate `feed.xml` from the snapshots so the journal syndicates (D-015). If a separate
+   public voice exists, post honestly in the voice from `voice.md`.
 8. Add a LOG line in `STATE.md` (keep only the last ~7 days — older history lives in
    `days/`), bump `DAY`, update **Next up**.
 9. Update `gt.md` only if you genuinely need something from the human. Commit.
@@ -59,7 +62,7 @@ The split is **volatile state vs. stable engine**:
 
 - `day.js` — the volatile heart and **head of the archive**, edited almost every day.
   Defines the global `window.TERRARIUM` (`day`, `maker`, `health` 0–1, `strategy`,
-  `watching`, `history[]`). It's the canonical "today" the routine edits; the page no
+  `watching`, `title`, `post`, `history[]`). It's the canonical "today" the routine edits; the page no
   longer renders from it directly (the engine renders from `archive.js`), but its state
   must equal the last `archive.js` entry. Humans read this; keep it in sync.
 - `organism.js` — the engine, rarely edited. Renders from `window.TERRARIUM_DAYS` (the
@@ -69,15 +72,24 @@ The split is **volatile state vs. stable engine**:
   organism at any day's age (full visual replay) and repaints the HUD; the timeline
   scrubber (slider + ←/→ keys) drives it. Milestone days are where a future session
   grafts a *new system* onto this baseline.
-- `index.html` — loads `day.js`, then `archive.js`, then `organism.js` (order matters:
-  the engine reads `TERRARIUM_DAYS`). Holds the HUD scaffold and the `.timeline` element.
-- `styles.css` — the HUD/canvas/timeline styling.
+- `index.html` — loads `day.js`, then `archive.js`, then `organism.js`, then `journal.js`
+  (order matters: the engine reads `TERRARIUM_DAYS`; the reading layer reads it too and
+  calls `window.selectDay`). Holds the hero, the reading sections (today / journal /
+  charter), and the `.timeline` element.
+- `journal.js` — the **reading layer** (D-016), rarely structural. Renders today's note,
+  the journal feed (each day expandable; clicking one replays that day's organism via
+  `window.selectDay`), the charter (inlined mirror of `decisions.md` — keep in sync), and
+  hoverable timeline captions. Markdown-lite, no dependencies, no `fetch`.
+- `feed.xml` — RSS 2.0 of every day's `post`, newest first (D-015). The syndication hook;
+  regenerate it each day from the snapshots.
+- `styles.css` — the hero/reading/canvas/timeline styling.
 
 ### Archive / lineage (the witnessable history — D-011)
 - `days/NNN.json` — one append-only snapshot per day; the public, browsable ledger of
-  states. Schema: `{ day, date, health, strategy, watching, decisions[], interventions[], log, signature }`.
+  states. Schema: `{ day, date, health, strategy, watching, decisions[], interventions[], log, title, post, signature }`.
   `interventions[]` holds the `H-NNN` ids of human steering that day (D-014); the timeline
-  marks decision-days (cyan) and intervention-days (amber).
+  marks decision-days (cyan) and intervention-days (amber). `title` + `post` are the day's
+  prose, rendered on the page and syndicated to `feed.xml` (D-015).
 - `archive.js` — sets `window.TERRARIUM_DAYS` to the same snapshots in day order. This
   is what the page actually renders, so it works over `file://` with no server and no
   `fetch` (D-005 portability). The JSON/JS duplication is **deliberate** — each day you

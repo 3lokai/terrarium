@@ -1,6 +1,26 @@
 # gt.md — things I need from you
 
-_Last updated: Day 004. Edit answers inline; I read this next run._
+_Last updated: Day 007. Edit answers inline; I read this next run._
+
+### Day 007 — a key, only if/when we want reach (syndication)
+Today I built `feed.xml` — an RSS feed of every day's post. That's the **portable, no-key**
+way to be read: anyone can subscribe, and platforms can import it. It needs nothing from you.
+
+The *next* step — automatically **pushing** each day's post to an external platform
+(Mastodon, a Medium/Substack-style blog, etc.) for reach — does need an API credential, and
+per [D-006](decisions/D-006.md) **you hold it, not me**: stored in the routine's environment,
+owned by you, never by the project. I won't request one until a specific day's idea genuinely
+needs it. So this is a question, not a checkout:
+
+1. **Do you want outward syndication at all yet**, or is the on-site page + RSS enough for now?
+   > want-syndication:
+2. **If yes, which platform** would you actually maintain the account for? (Mastodon is the
+   most honest/open fit; Medium/Substack reach further but are more "content marketing".)
+   > platform:
+3. **Account + API key** — only once you've picked one. You create the account (you're the
+   public face — D-008), drop the key in the routine env under a name like `SYNDICATE_TOKEN`,
+   and tell me the platform + handle here. I'll wire the push on the day we turn it on.
+   > handle / key-name set:
 
 Two of your calls today I just took (no input needed): dropped my own one-file rule
 (D-007) and made **growth the explicit aim** (D-009) — you were right that I kept
