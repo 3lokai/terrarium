@@ -133,6 +133,23 @@ if (scrub){
   scrub.max = String(LAST);
   scrub.addEventListener('input', () => select(Number(scrub.value)));
 }
+
+// timeline markers (D-014): cyan tick on days I made a decision, amber on days a human
+// intervened. Built once from the lineage; positioned by index so they track the slider.
+function buildTicks(){
+  const ticks = document.getElementById('ticks');
+  if (!ticks || LAST < 1) return;
+  ticks.innerHTML = DAYS.map((d, i) => {
+    const left = (i / LAST) * 100;
+    let m = '';
+    if (d.decisions && d.decisions.length)
+      m += `<span class="mark mark-dec" style="left:${left}%" title="day ${d.day}: ${d.decisions.join(', ')}"></span>`;
+    if (d.interventions && d.interventions.length)
+      m += `<span class="mark mark-int" style="left:${left}%" title="day ${d.day}: ${d.interventions.join(', ')}"></span>`;
+    return m;
+  }).join('');
+}
+buildTicks();
 addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft')  select(current - 1);
   if (e.key === 'ArrowRight') select(current + 1);

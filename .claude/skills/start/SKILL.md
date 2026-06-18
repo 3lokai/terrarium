@@ -18,7 +18,8 @@ tracking, and clean session close / restart.**
 1. Read `STATE.md`, the `decisions.md` charter index, and `voice.md`; skim `index.html`.
    Open a `decisions/D-NNN.md` body ONLY if today's work touches it (D-012 — tiered
    reading keeps the budget bounded).
-2. Read `gt.md` and `inbox/` if it exists. Note any new human answers.
+2. Read `gt.md`, `interventions.md` (the human's hand — D-014), and `inbox/` if it exists.
+   Note any new human answers or interventions, including any `reconsider-request`.
 3. Note the current `DAY` from `STATE.md` / `day.js`. This run produces day N = DAY.
 
 ## Phase 1 — the day's work (the real job; do it autonomously)
@@ -26,12 +27,22 @@ Execute the daily protocol from `CLAUDE.md` / `STATE.md`, steps 3–9, making th
 yourself:
 - **Research**: 1–3 web searches for a real signal from the world. No signal you can
   honestly stand behind → "hold course, because X" is a valid day.
+- **Contradiction check (D-013)**: hold the day's signal — and your own reasoning about it —
+  against the active decisions in the charter index. If anything contradicts an active
+  decision, you MUST reconsider it this day: write a *new numbered decision* that names the
+  one it amends/supersedes (never edit the old file). A reasoned "still holds, because…" is
+  a valid reconsideration. Honor any `reconsider-request` intervention the same way.
+- **Log the human's hand (D-014)**: if a human intervention prompted or shaped this run
+  (a direction, suggestion, constraint, tooling, or reconsider-request), append a new
+  `H-NNN` entry to `interventions.md` — what they did, how you responded, any `D-NNN` it
+  triggered.
 - **Decide**: write `decisions/D-NNN.md` (append-only) + one line in `decisions.md`.
   Sign "— Mayfly · day N". No decision, no commit.
 - **Build**: enact it — usually edit `day.js`; deeper changes in `organism.js`/new files.
   **Whatever you commit must still run** (open the logic in your head; don't break the page).
-- **Snapshot**: write `days/NNN.json` AND append the identical object to `archive.js`.
-  The last `archive.js` entry MUST equal `day.js`. Cross-check before commit.
+- **Snapshot**: write `days/NNN.json` AND append the identical object to `archive.js`,
+  including both `decisions: [...]` and `interventions: [...]` (H-NNN) for the day. The last
+  `archive.js` entry MUST equal `day.js`. Cross-check before commit.
 - **Voice**: if a public surface exists, draft/post the day's decision in `voice.md`'s voice.
 - **Bookkeep**: add one LOG line in `STATE.md`, trim LOG to ~7 days, bump `DAY`, refresh
   **Next up**. Update `gt.md` only if you actually need something.
@@ -58,7 +69,10 @@ You are spending one session. Track it deliberately:
 A Terrarium day is by design **one amnesiac session**. Closing well = leaving perfect
 notes for the stranger you become next run. Before declaring done, verify:
 - [ ] `decisions/D-NNN.md` written and indexed in `decisions.md`.
-- [ ] `day.js` updated; `days/NNN.json` written; `archive.js` last entry == `day.js`.
+- [ ] Contradiction check done (D-013); any human intervention logged as `H-NNN` in
+      `interventions.md` (D-014).
+- [ ] `day.js` updated; `days/NNN.json` written (with `interventions[]`); `archive.js` last
+      entry == `day.js`.
 - [ ] `STATE.md`: LOG line added & trimmed, `DAY` bumped, **Next up** refreshed.
 - [ ] The page still runs (no JS syntax error introduced; load order intact).
 - [ ] Everything committed (`git status` clean). No decision was made without a commit.

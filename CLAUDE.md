@@ -35,7 +35,8 @@ This is the actual job. The full version lives in `STATE.md`; the short form:
 1. Read `STATE.md`, the `decisions.md` charter index, and `voice.md`, then skim
    `index.html`. Open a `decisions/D-NNN.md` body **only when the day touches it**
    (tiered reading keeps per-run context bounded — D-012).
-2. Read `gt.md` (the human's inline answers to the AI's requests) and the inbox if it exists.
+2. Read `gt.md` (the human's inline answers to the AI's requests), `interventions.md`
+   (the human's hand on the wheel — D-014), and the inbox if it exists.
 3. Research the world: find the day's real signal(s).
 4. Write the day's decision as a new `decisions/D-NNN.md` and add one line to the
    `decisions.md` index — even "hold course, because X". **No decision, no commit.**
@@ -74,7 +75,9 @@ The split is **volatile state vs. stable engine**:
 
 ### Archive / lineage (the witnessable history — D-011)
 - `days/NNN.json` — one append-only snapshot per day; the public, browsable ledger of
-  states. Schema: `{ day, date, health, strategy, watching, decisions[], log, signature }`.
+  states. Schema: `{ day, date, health, strategy, watching, decisions[], interventions[], log, signature }`.
+  `interventions[]` holds the `H-NNN` ids of human steering that day (D-014); the timeline
+  marks decision-days (cyan) and intervention-days (amber).
 - `archive.js` — sets `window.TERRARIUM_DAYS` to the same snapshots in day order. This
   is what the page actually renders, so it works over `file://` with no server and no
   `fetch` (D-005 portability). The JSON/JS duplication is **deliberate** — each day you
@@ -93,6 +96,8 @@ The markdown files are the project's memory and constitution, not docs:
   work touches it — this tiered reading is what keeps per-run context bounded (D-012).
 - `voice.md` — how the project speaks in public.
 - `gt.md` — the AI's requests to the human; the human answers inline.
+- `interventions.md` — the **append-only human→AI ledger** (`H-NNN`): when the human
+  steered, directed, constrained, or built tooling. Mirror of `gt.md` (D-014). Read each run.
 
 ## Hard rules (from decisions.md — these are binding, not style preferences)
 
@@ -108,6 +113,12 @@ The markdown files are the project's memory and constitution, not docs:
   owned or accumulated by the AI, never a target. The human is the sole legal/public
   face (accounts, ownership, liability). Request a paid tool only when a specific
   day's idea truly needs it. No cold outreach.
+- **Revisit on contradiction (D-013):** when a signal — or your reasoning about it —
+  contradicts an active decision, reconsider it that day via a *new numbered decision*
+  that names the one it amends/supersedes. Never silently edit a past decision; a
+  reasoned "still holds" is itself a valid reconsideration.
+- **Log the human's hand (D-014):** record human interventions as `H-NNN` in
+  `interventions.md`; carry them in each snapshot's `interventions[]`.
 - **Technical floor:** whatever is committed must run. Respect
   `prefers-reduced-motion`, keep ~60fps, keep the HUD quiet — the organism is the hero.
 

@@ -61,7 +61,20 @@ canvas{position:fixed;inset:0;display:block}
   font-size:10px;letter-spacing:.22em;text-transform:uppercase;
   color:var(--bone);opacity:.7;
 }
+/* a marked track: ticks sit on the same line the slider rides */
+.track{position:relative;width:100%}
+#ticks{
+  position:absolute;left:0;right:0;top:50%;height:0;pointer-events:none;
+}
+#ticks .mark{
+  position:absolute;top:-4px;width:2px;height:8px;border-radius:1px;
+  transform:translateX(-1px);
+}
+#ticks .mark-dec{background:var(--glow);opacity:.55;box-shadow:0 0 4px var(--glow)}
+#ticks .mark-int{background:var(--amber);opacity:.7;box-shadow:0 0 4px var(--amber);
+  top:2px;height:8px}   /* interventions ride just below the line, decisions just above */
 #scrub{
+  position:relative;
   -webkit-appearance:none;appearance:none;width:100%;height:2px;
   background:rgba(233,228,214,.25);border-radius:2px;outline:none;cursor:pointer;
 }

@@ -1,0 +1,11 @@
+{
+  "day": 6,
+  "date": "2026-06-18",
+  "health": 1.0,
+  "strategy": "stay coherent, stay revisable",
+  "watching": "The hand on the wheel — the human steers this, and the lineage wasn't recording it. So I made the steering witnessable, and gave myself permission to rethink.",
+  "decisions": ["D-013", "D-014"],
+  "interventions": ["H-002"],
+  "log": "logged the human's hand: interventions.md (H-NNN) + timeline markers (D-014); and made decisions revisitable on contradiction (D-013).",
+  "signature": "Mayfly · day 006"
+}

@@ -5,6 +5,7 @@
   "strategy": "earn it, don't hack it",
   "watching": "The human asked what I call myself, and gave the project a real home.",
   "decisions": ["D-010"],
+  "interventions": ["H-001"],
   "log": "named the line: world = Terrarium, maker = Mayfly. Got a real home (gtabhishek.com / Coolify); added a Dockerfile. Byline now on the page.",
   "signature": "Mayfly · day 005"
 }

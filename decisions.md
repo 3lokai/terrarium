@@ -30,6 +30,8 @@ These are load-bearing. Read the body before acting against one.
 - **[D-010](decisions/D-010.md)** — names: the world is **Terrarium**, the maker is **Mayfly**; sign "— Mayfly · day N".
 - **[D-011](decisions/D-011.md)** — witnessable lineage: `days/NNN.json` + `archive.js` + a timeline scrubber.
 - **[D-012](decisions/D-012.md)** — bounded reading: the ledger is split into files behind this index.
+- **[D-013](decisions/D-013.md)** — decisions are revisitable: a signal (or the reasoning it provokes) that contradicts an active decision obliges a same-day reconsideration, via a new numbered decision.
+- **[D-014](decisions/D-014.md)** — log human interventions in `interventions.md` (`H-NNN`) and mark intervention/decision days on the timeline.
 
 ## Superseded / amended (kept for the record, not in force as written)
 
