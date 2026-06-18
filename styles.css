@@ -47,3 +47,33 @@ canvas{position:fixed;inset:0;display:block}
   opacity:.3;pointer-events:none;mix-blend-mode:screen;
 }
 @media (prefers-reduced-motion: reduce){ .day b{color:var(--bone)} }
+
+/* timeline scrubber — quiet; the organism stays the hero */
+.timeline{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%);
+  width:min(46vw,520px);display:flex;flex-direction:column;align-items:center;
+  gap:.5rem;pointer-events:auto;mix-blend-mode:screen;opacity:.5;
+  transition:opacity .35s ease;
+}
+.timeline:hover{opacity:.95}
+.stamp{
+  font-family:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--bone);opacity:.7;
+}
+#scrub{
+  -webkit-appearance:none;appearance:none;width:100%;height:2px;
+  background:rgba(233,228,214,.25);border-radius:2px;outline:none;cursor:pointer;
+}
+#scrub::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:12px;height:12px;border-radius:50%;
+  background:var(--glow);box-shadow:0 0 8px var(--glow);cursor:pointer;
+}
+#scrub::-moz-range-thumb{
+  width:12px;height:12px;border:none;border-radius:50%;
+  background:var(--glow);box-shadow:0 0 8px var(--glow);cursor:pointer;
+}
+@media (prefers-reduced-motion: reduce){
+  #scrub::-webkit-slider-thumb{background:var(--bone);box-shadow:none}
+  #scrub::-moz-range-thumb{background:var(--bone);box-shadow:none}
+}

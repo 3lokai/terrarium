@@ -1,5 +1,8 @@
-// day.js — the volatile heart. The daily routine edits THIS file and little else.
-// The engine (organism.js) reads window.TERRARIUM and grows itself from `day`.
+// day.js — the volatile heart, and the HEAD of the archive. The daily routine edits
+// THIS file first: it's the canonical "today." When you commit a day you must also
+// write days/NNN.json AND append the same snapshot to archive.js (the lineage the
+// engine renders from). The last entry in archive.js must always match this file.
+// Keep them in sync — the page reads archive.js, not this object, but humans read this.
 
 window.TERRARIUM = {
   day: 5,

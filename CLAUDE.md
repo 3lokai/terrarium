@@ -32,16 +32,22 @@ radical transparency is the brand (D-002).
 
 This is the actual job. The full version lives in `STATE.md`; the short form:
 
-1. Read `STATE.md`, then `decisions.md`, then `voice.md`, then skim `index.html`.
+1. Read `STATE.md`, the `decisions.md` charter index, and `voice.md`, then skim
+   `index.html`. Open a `decisions/D-NNN.md` body **only when the day touches it**
+   (tiered reading keeps per-run context bounded — D-012).
 2. Read `gt.md` (the human's inline answers to the AI's requests) and the inbox if it exists.
 3. Research the world: find the day's real signal(s).
-4. Write at least one dated, numbered decision in `decisions.md` — even "hold course,
-   because X". **No decision, no commit.** Sign it "— Mayfly · day N".
+4. Write the day's decision as a new `decisions/D-NNN.md` and add one line to the
+   `decisions.md` index — even "hold course, because X". **No decision, no commit.**
+   Sign it "— Mayfly · day N".
 5. Build increment(s) that enact the decision(s) (usually editing `day.js`; deeper
    changes in `organism.js` or new files). Whatever is committed **must still run**.
-6. If a public voice exists: post the day's decision honestly, in the voice from `voice.md`.
-7. Append to the LOG in `STATE.md`, bump `DAY`, update **Next up**.
-8. Update `gt.md` only if you genuinely need something from the human. Commit.
+6. **Snapshot the day:** write `days/NNN.json` and append the same object to
+   `archive.js` (see Archive below). The last `archive.js` entry must equal `day.js`.
+7. If a public voice exists: post the day's decision honestly, in the voice from `voice.md`.
+8. Add a LOG line in `STATE.md` (keep only the last ~7 days — older history lives in
+   `days/`), bump `DAY`, update **Next up**.
+9. Update `gt.md` only if you genuinely need something from the human. Commit.
 
 Use the full session well — go as deep as the session allows rather than stopping at a
 single token edit — but every decision is still numbered, dated, and append-only.
@@ -50,23 +56,41 @@ single token edit — but every decision is still numbered, dated, and append-on
 
 The split is **volatile state vs. stable engine**:
 
-- `day.js` — the volatile heart, edited almost every day. Defines the global
-  `window.TERRARIUM` object: `day`, `health` (0–1), `strategy`, `watching`, and a
-  `history` array of `[dayNumber, text]` entries (newest last).
-- `organism.js` — the engine, rarely edited. Reads `window.TERRARIUM` and renders.
-  The **growth model is literal**: the older the organism (`day`), the denser and
-  brighter it is — population and glow rise with age on a saturating curve, capped so
-  it never melts a laptop. Milestone days are where a future session grafts a *new
-  system* onto this baseline.
-- `index.html` — loads `day.js` then `organism.js` (order matters: the engine reads
-  the global the state file sets). Holds the HUD scaffold the engine fills in.
-- `styles.css` — the HUD/canvas styling.
+- `day.js` — the volatile heart and **head of the archive**, edited almost every day.
+  Defines the global `window.TERRARIUM` (`day`, `maker`, `health` 0–1, `strategy`,
+  `watching`, `history[]`). It's the canonical "today" the routine edits; the page no
+  longer renders from it directly (the engine renders from `archive.js`), but its state
+  must equal the last `archive.js` entry. Humans read this; keep it in sync.
+- `organism.js` — the engine, rarely edited. Renders from `window.TERRARIUM_DAYS` (the
+  lineage). The **growth model is literal and a pure function of the day number**: the
+  older the organism, the denser and brighter — population and glow rise with age on a
+  saturating curve, capped so it never melts a laptop. `select(index)` re-seeds the
+  organism at any day's age (full visual replay) and repaints the HUD; the timeline
+  scrubber (slider + ←/→ keys) drives it. Milestone days are where a future session
+  grafts a *new system* onto this baseline.
+- `index.html` — loads `day.js`, then `archive.js`, then `organism.js` (order matters:
+  the engine reads `TERRARIUM_DAYS`). Holds the HUD scaffold and the `.timeline` element.
+- `styles.css` — the HUD/canvas/timeline styling.
+
+### Archive / lineage (the witnessable history — D-011)
+- `days/NNN.json` — one append-only snapshot per day; the public, browsable ledger of
+  states. Schema: `{ day, date, health, strategy, watching, decisions[], log, signature }`.
+- `archive.js` — sets `window.TERRARIUM_DAYS` to the same snapshots in day order. This
+  is what the page actually renders, so it works over `file://` with no server and no
+  `fetch` (D-005 portability). The JSON/JS duplication is **deliberate** — each day you
+  write both and keep them in sync (last entry == `day.js`).
+- The cumulative log panel for a selected day N is built from snapshots `0..N`; each
+  snapshot stores only its own one-line `log`.
 
 The markdown files are the project's memory and constitution, not docs:
-- `STATE.md` — read first, every run. Memory + protocol + roadmap (Next up / Backlog).
-- `decisions.md` — **append-only** ledger of numbered decisions (D-001, D-002, …).
+- `STATE.md` — read first, every run. Bounded working memory: goal, protocol, roadmap,
+  and the last ~7 LOG lines (older history is in `days/`, not here — D-012).
+- `decisions.md` — the **charter index**: one line per decision with links. Read in
+  full each run.
+- `decisions/D-NNN.md` — one **append-only** decision per file (the full ledger).
   A decision is never silently overturned; it is only superseded/amended by a new
-  numbered entry that names the one it replaces.
+  numbered decision that names the one it replaces. Open a body only when the day's
+  work touches it — this tiered reading is what keeps per-run context bounded (D-012).
 - `voice.md` — how the project speaks in public.
 - `gt.md` — the AI's requests to the human; the human answers inline.
 
