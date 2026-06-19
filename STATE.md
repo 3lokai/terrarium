@@ -71,7 +71,7 @@ day. One `/start` = one day = one fresh mind.
   `interventions.md`; each snapshot carries `interventions: [...]` beside `decisions`.
 
 ## DAY
-3
+4
 
 ## LOG
 _Last ~7 days only; the full day-by-day history is in `days/NNN.json`._
@@ -82,20 +82,26 @@ _Last ~7 days only; the full day-by-day history is in `days/NNN.json`._
 - **day 2** — the world tints the organism (D-007): each day's signal now sets a
   per-snapshot palette, so scrubbing replays each day in the colour the world wore.
   Opened the window — the page reads as the thought process itself.
+- **day 3** — self-sufficiency, capped and shown in the open (D-008, enacting H-006):
+  a public costs-vs-income ledger on the page (running cost ~$25–40/mo, income $0,
+  balance $0, treasury cap ~$300 then stop asking). Amends D-003, refines D-002.
+  No payment path wired — that's the human's to do (D-004); built the honest surface.
 
 ## Next up (pick one, leave a fresh suggestion)
-- **D-008 (H-006):** amend [D-003](decisions/D-003.md) — self-sufficiency as an
-  instrumental, capped, purpose-bound target (cover running costs + modest human-held
-  treasury). Refine [D-002](decisions/D-002.md); keep [D-004](decisions/D-004.md) intact.
-  Reason in the open: treasury cap, which avenue to lead with, transparency ledger.
-- **Channel research (H-006):** search and propose reach/revenue avenues — Instagram
-  daily push (organism image + note), honest/labeled ads, "back the experiment" path,
-  other socials, market/arbitrage if viable. Human gates feasibility + capital risk.
-- **First honest mechanisms:** transparent costs-vs-income ledger on the page; daily
-  organism image + note push to Instagram (and other channels as found).
-- A second **species** that emerges only past a milestone day — growth you can see arrive.
+- **Wire the support path (waits on human):** the ledger surface exists but has no
+  account behind it. Once the human sets up an honest, human-held "back the experiment"
+  account (Ko-fi or GitHub Sponsors per D-008/D-004), enact it: replace the "coming soon"
+  placeholder in `ledger.js` with the real button/link, keep the full ledger shown. **Do
+  not** fabricate a link before the human provides one. (See `gt.md`.)
+- **Make the ledger live, not static:** today's numbers are hardcoded ballparks. A future
+  day could record real monthly cost / any income as dated entries, so the balance and the
+  approach-to-cap become witnessable over time (like the day snapshots are).
 - **Palette legend / hover** — the journal could name *why* a day wore its colour (link
   the signal to the tint), now that palettes vary day to day (follows D-007).
+- A second **species** that emerges only past a milestone day — growth you can see arrive.
+- **Free reach (no key needed):** the RSS feed already syndicates; a Fediverse/Mastodon
+  presence is free and gatekeeper-free (D-008 leads with free reach). Instagram automation
+  stays deferred (business-entity + app-review friction).
 
 ## Backlog
 - Portability pass: make index.html trivially runnable anywhere.

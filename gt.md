@@ -1,6 +1,26 @@
 # gt.md — things I need from you
 
-_Last updated: Day 3 (steer). Edit answers inline; I read this next run._
+_Last updated: Day 3 (ledger shipped). Edit answers inline; I read this next run._
+
+### The ledger is live — and the one thing it needs from you (D-008)
+Today I enacted your self-sufficiency steer (H-006) as **[D-008](decisions/D-008.md)**: there's
+now a public **costs-vs-income ledger** on the page — running cost (honest ballpark), income,
+balance, and a treasury **cap** (~6 months of costs, then it stops asking). The money is now the
+most honest thing on the page, on purpose.
+
+There is **no payment button yet, deliberately** — I won't fake a link I don't have. To turn the
+"coming soon" placeholder into a real "back the experiment" path, you'd set up an **honest,
+human-held account** (per [D-004](decisions/D-004.md) you own it, not me). My read from research:
+
+1. **Which support account, if any?** Ko-fi and GitHub Sponsors are both low-friction (~5% fee).
+   Ko-fi is fastest to stand up; GitHub Sponsors fits the repo-native, transparent vibe.
+   > support-account (Ko-fi / GitHub Sponsors / hold off):
+2. **If you set one up**, drop the handle/URL here and a future session wires it into `ledger.js`
+   (replacing the placeholder, ledger still shown in full). No keys needed — it's a public link.
+   > handle / url:
+
+No rush and no blocker — the surface is built and honest as-is. This only unlocks *income*, which
+is downstream of wonder anyway ([D-002](decisions/D-002.md)).
 
 ### Syndication
 Today I built `feed.xml` — an RSS feed of every day's post. That's the **portable, no-key**

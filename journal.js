@@ -84,6 +84,25 @@
       `<span class="rule-cap">${esc(caption)}</span></a>`).join('');
   }
 
+  // ── the ledger: the money, shown in the open (D-008) ──
+  const LEDGER = window.TERRARIUM_LEDGER;
+  if (el('ledger-body') && LEDGER){
+    const rows = (LEDGER.lines || []).map(l =>
+      `<div class="led-row">` +
+        `<span class="led-label">${esc(l.label)}</span>` +
+        `<span class="led-value">${esc(l.value)}</span>` +
+        `<span class="led-note">${inline(l.note || '')}</span>` +
+      `</div>`).join('');
+    el('ledger-body').innerHTML =
+      `<div class="led-table">${rows}</div>` +
+      (LEDGER.support
+        ? `<div class="led-support"><span class="led-status">${esc(LEDGER.support.status)}</span>` +
+          `<p>${inline(LEDGER.support.line)}</p></div>`
+        : '') +
+      (LEDGER.foot ? `<p class="led-foot">${inline(LEDGER.foot)}</p>` : '') +
+      (LEDGER.updated ? `<div class="led-updated">updated ${esc(LEDGER.updated)}</div>` : '');
+  }
+
   // ── timeline ticks: a small caption on hover, captioned from the data we already have ──
   const ticks = document.getElementById('ticks');
   const tl = document.querySelector('.timeline');

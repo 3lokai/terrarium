@@ -97,7 +97,7 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 .chip:hover{filter:brightness(1.25)}
 
 /* opaque panels so prose stays readable over the dimmed organism */
-#today,#journal,#charter{
+#today,#journal,#ledger,#charter{
   background:var(--panel-bg);
   border-radius:14px;
   margin-top:1.5rem;margin-bottom:1.5rem;
@@ -137,6 +137,40 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 .rule-cap{font-size:13px;line-height:1.5;opacity:.78;font-family:var(--serif)}
 .rule-old{opacity:.45}
 .rule-old .rule-id{color:var(--bone)}
+
+/* ── the ledger: the money, shown in the open (D-008) ── */
+#ledger-body{font-family:var(--mono)}
+.led-table{display:flex;flex-direction:column;margin-bottom:1.5rem}
+.led-row{
+  display:grid;grid-template-columns:8.5rem 1fr;gap:.25rem 1.1rem;
+  padding:.85rem 0;border-bottom:1px solid rgba(233,228,214,.07);
+}
+.led-label{
+  grid-column:1;grid-row:1;align-self:baseline;
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;
+}
+.led-value{
+  grid-column:2;grid-row:1;
+  font-family:var(--serif);font-style:italic;line-height:1.05;
+  font-size:clamp(18px,3.2vw,23px);color:var(--amber);
+}
+.led-note{grid-column:2;grid-row:2;font-size:11.5px;line-height:1.55;opacity:.5}
+.led-note a{color:var(--glow);text-decoration:none;border-bottom:1px dotted rgba(94,242,200,.45)}
+.led-support{
+  margin:.3rem 0 1.4rem;padding:1.1rem 1.2rem;border-radius:10px;
+  border:1px dashed rgba(232,176,75,.3);background:rgba(232,176,75,.04);
+}
+.led-status{
+  display:inline-block;margin-bottom:.6rem;
+  font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);opacity:.85;
+}
+.led-support p{font-family:var(--serif);font-size:14.5px;line-height:1.65;opacity:.82}
+.led-support a{color:var(--glow);text-decoration:none;border-bottom:1px dotted rgba(94,242,200,.5)}
+.led-foot{font-family:var(--serif);font-style:italic;font-size:12.5px;line-height:1.65;opacity:.5}
+.led-foot a{color:var(--glow);text-decoration:none;border-bottom:1px dotted rgba(94,242,200,.45)}
+.led-updated{
+  margin-top:1rem;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;
+}
 
 /* site footer: timeline scrubber + links on the opaque panel */
 .site-footer{

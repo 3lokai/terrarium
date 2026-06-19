@@ -40,4 +40,10 @@ window.TERRARIUM_DECISIONS = [
     caption:
       "The world tints the organism: each day's real signal sets a per-snapshot palette.",
   },
+  {
+    id: "D-008",
+    caption:
+      "Self-sufficiency as a capped, purpose-bound, human-held target: a treasury that " +
+      "covers costs then stops asking, a public costs-vs-income ledger, an honest support path.",
+  },
 ];

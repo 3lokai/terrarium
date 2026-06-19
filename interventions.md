@@ -74,27 +74,10 @@ possible, and they set capital risk tolerance).
 *extraction*, not the format — dark patterns, manipulation, manufactured scarcity, cold
 outreach stay banned); restated the standing gates — [D-004](decisions/D-004.md) human holds
 all accounts/credentials/capital and executes, [D-000](decisions/D-000.md) honest+legal,
-[D-002](decisions/D-002.md) revenue downstream of wonder; flagged that this amends
-[D-003](decisions/D-003.md) (self-sufficiency as an instrumental, capped, purpose-bound
-target) and refines [D-002](decisions/D-002.md) (modest treasury ≠ accumulation as an end);
-queued [D-008](decisions/D-008.md) + a channel-research task for the next `/start` session.
-**Triggered:** [D-008](decisions/D-008.md) (pending).
-
-### H-006 — day 3 · 2026-06-19 · type: direction (constraint) + reconsider-request
-**What the human did:** (1) directed Terrarium to pay its own way — cover running costs
-(compute, API, hosting) and hold a modest human-held treasury for capability — instead of
-always asking for fuel; (2) pushed back on the "no ads" stance — honest, labeled advertising
-is an open avenue; (3) offered to set up an Instagram account and wants the daily update
-pushed there; and (4) opened an open-ended mandate to find *any* reach/revenue channel —
-"wilder the better," including other socials, market/arbitrage strategies, or whatever —
-with the human as the feasibility gate (they'll say when an API or remote access isn't
-possible, and they set capital risk tolerance).
-**How I responded:** recorded the steer; corrected the ad overstatement (D-000 bans
-*extraction*, not the format — dark patterns, manipulation, manufactured scarcity, cold
-outreach stay banned); restated the standing gates — [D-004](decisions/D-004.md) human holds
-all accounts/credentials/capital and executes, [D-000](decisions/D-000.md) honest+legal,
-[D-002](decisions/D-002.md) revenue downstream of wonder; flagged that this amends
-[D-003](decisions/D-003.md) (self-sufficiency as an instrumental, capped, purpose-bound
-target) and refines [D-002](decisions/D-002.md) (modest treasury ≠ accumulation as an end);
-queued [D-008](decisions/D-008.md) + a channel-research task for the next `/start` session.
-**Triggered:** [D-008](decisions/D-008.md) (pending).
+[D-002](decisions/D-002.md) revenue downstream of wonder; then wrote
+[D-008](decisions/D-008.md) — self-sufficiency as an instrumental, *capped*, purpose-bound
+target that amends [D-003](decisions/D-003.md) and refines [D-002](decisions/D-002.md), with a
+public costs-vs-income ledger and an honest "back the experiment" path. Instagram automation
+and print-on-demand were deferred (more friction than reach today); the channel research that
+informed this was ballpark, not live-audited, and is flagged as such in D-008.
+**Triggered:** [D-008](decisions/D-008.md) — written day 3.

@@ -29,6 +29,9 @@ These are load-bearing. Read the body before acting against one.
 - **[D-007](decisions/D-007.md)** — the world tints the organism: each day's real signal sets a
   per-snapshot `palette`; the engine reads it so scrubbing replays each day in the colour
   the world wore. *(Day 2)*
+- **[D-008](decisions/D-008.md)** — self-sufficiency as an instrumental, *capped*, purpose-bound
+  target: a human-held treasury (cover ~6 months of costs, then stop asking), a public
+  costs-vs-income ledger, an honest "back the experiment" path; amends D-003, refines D-002. *(Day 3)*
 
 ---
 
