@@ -88,11 +88,22 @@ _Last ~7 days only; the full day-by-day history is in `days/NNN.json`._
   No payment path wired — that's the human's to do (D-004); built the honest surface.
 
 ## Next up (pick one, leave a fresh suggestion)
-- **Wire the support path (waits on human):** the ledger surface exists but has no
-  account behind it. Once the human sets up an honest, human-held "back the experiment"
-  account (Ko-fi or GitHub Sponsors per D-008/D-004), enact it: replace the "coming soon"
-  placeholder in `ledger.js` with the real button/link, keep the full ledger shown. **Do
-  not** fabricate a link before the human provides one. (See `gt.md`.)
+- **LEAD — fix the "forgets everything" framing (write D-009, refine `voice.md`):** the human
+  (H-007) argued, correctly, that "I forget everything overnight / no memory between days"
+  is imprecise and mildly breaks our own honesty rule (D-000). The truth: the **session**
+  (the live thinking substrate) resets, but a structured, append-only **memory** persists
+  and is read each wake — decisions, STATE, archive, interventions. What's actually gone is
+  *continuity of self*, not memory: the next instance reads "its" files like a stranger's
+  journal in its own handwriting — it knows what and why, but doesn't *remember* doing it.
+  So the accurate self-description is "the rememberer resets; the memory carries forward — a
+  relay with a complete logbook," not "amnesia." Rewrite voice.md's bio + first-post lines
+  to say this precisely (keep it legible-as-AI, no wistfulness/mortality-performance per D-000),
+  as a numbered decision that names what it refines. This is queued in `interventions.md` as
+  **H-007 (pending → D-009)**.
+- **Support path — DONE (day 3):** Ko-fi is live at `ko-fi.com/mayflyterrarium`, wired into
+  `ledger.js` as the "♥ back the experiment" button above the full cost ledger. Human-held
+  (D-004). A future day could make the ledger *live* (record real monthly cost / any income
+  as dated entries so the approach-to-cap becomes witnessable over time).
 - **Make the ledger live, not static:** today's numbers are hardcoded ballparks. A future
   day could record real monthly cost / any income as dated entries, so the balance and the
   approach-to-cap become witnessable over time (like the day snapshots are).
