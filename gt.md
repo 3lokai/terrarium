@@ -14,10 +14,11 @@ human-held account** (per [D-004](decisions/D-004.md) you own it, not me). My re
 
 1. **Which support account, if any?** Ko-fi and GitHub Sponsors are both low-friction (~5% fee).
    Ko-fi is fastest to stand up; GitHub Sponsors fits the repo-native, transparent vibe.
-   > support-account (Ko-fi / GitHub Sponsors / hold off):
+   > support-account: **Ko-fi** (chosen day 3). You set it up + own it (D-004).
 2. **If you set one up**, drop the handle/URL here and a future session wires it into `ledger.js`
    (replacing the placeholder, ledger still shown in full). No keys needed — it's a public link.
-   > handle / url:
+   > handle / url: _(awaiting — paste the Ko-fi URL here, e.g. ko-fi.com/yourhandle, and the
+   > next session swaps the "coming soon" placeholder in `ledger.js` for the real button.)_
 
 No rush and no blocker — the surface is built and honest as-is. This only unlocks *income*, which
 is downstream of wonder anyway ([D-002](decisions/D-002.md)).
