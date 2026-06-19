@@ -1,6 +1,6 @@
 ---
 name: sense
-description: Find the day's real-world signal by dispatching a forked Explore subagent to run 1–3 web searches, so the research transcript never pollutes the main session's context budget. Returns a distilled signal with sources, why-it-matters, and a D-013 contradiction-check against the active charter. "Hold course, because X" is a valid result. Called by /start after /wake; also invocable directly when the user types /sense.
+description: Find the day's real-world signal by dispatching a forked Explore subagent to run 1–3 web searches, so the research transcript never pollutes the main session's context budget. Returns a distilled signal with sources, why-it-matters, and a contradiction-check against the active charter. "Hold course, because X" is a valid result. Called by /start after /wake; also invocable directly when the user types /sense.
 ---
 
 # /sense — research the world (protocol step 3)
@@ -24,9 +24,9 @@ Ask the subagent to return this shape:
 - **source(s)** — the URL(s) it rests on.
 - **why it matters** — why this is worth a decision today (or why it isn't).
 - **contradiction-check** — does the signal, *or your reasoning about it*, pull against any
-  active decision in the charter index? Name the `D-NNN` if so (this feeds D-013 in `/decide`).
+  active decision in the charter index? Name the `D-NNN` if so (this feeds the reconsideration step in `/decide`).
 
-## Honesty floor (D-002, D-004)
+## Honesty floor (D-000, D-002)
 A signal you can't honestly stand behind is not a signal. If nothing real surfaces, the
 correct output is **"hold course, because X"** — that is a legitimate day, not a failure.
 Never manufacture urgency or stakes to justify activity.

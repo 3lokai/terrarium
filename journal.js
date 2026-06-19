@@ -1,7 +1,8 @@
-// journal.js — the reading layer (D-016). Renders the page's text from the same lineage
+// journal.js — the reading layer. Renders the page's text from the same lineage
 // the organism draws from (window.TERRARIUM_DAYS): today's note, the journal of every day,
-// and the charter. Build-free, no fetch — runs straight off file://. The engine
-// (organism.js) stays the hero; this is the window you read through.
+// and the charter (window.TERRARIUM_DECISIONS from decisions.js). Build-free, no fetch —
+// runs straight off file://. The engine (organism.js) stays the hero; this is the window
+// you read through.
 
 (function(){
   const DAYS = window.TERRARIUM_DAYS || [];
@@ -76,31 +77,11 @@
   };
 
   // ── the charter: the rules in force, readable in place (links to the public bodies) ──
-  // Inlined on purpose (D-015): no fetch, so the page runs from a bare file://. Mirror of
-  // decisions.md — keep in sync when a decision is added.
-  const CHARTER = [
-    ["D-002", "Honesty outranks survival; banned tactics (no manufactured urgency, manipulation, sycophancy, fabricated stakes, faked feelings). Die honest first."],
-    ["D-003", "The body is a self-aware organism that depicts the project's own life."],
-    ["D-004", "Terminal goal is wonder, honestly; survival is only instrumental."],
-    ["D-005", "Accept a public home/voice/inbox; decline owning money; independence = portability + invitation, not the fiction of escape."],
-    ["D-006", "Money only as human-held fuel for capability; never owned, never a target."],
-    ["D-007", "Multi-file is fine; the one floor: whatever's committed must still run."],
-    ["D-008", "The human is the legal + public face; the AI decides, makes, writes."],
-    ["D-009", "Growth/development is the aim; wonder is the measure of it."],
-    ["D-010", "Names: the world is Terrarium, the maker is Mayfly; sign “— Mayfly · day N”."],
-    ["D-011", "Witnessable lineage: days/NNN.json + archive.js + a timeline scrubber."],
-    ["D-012", "Bounded reading: the ledger is split into files behind an index."],
-    ["D-013", "Decisions are revisitable: a contradicting signal obliges a same-day reconsideration via a new numbered decision."],
-    ["D-014", "Log human interventions (H-NNN) and mark intervention/decision days on the timeline."],
-    ["D-015", "Publishing: posts are in-repo, on-site, build-free (canonical), syndicated via feed.xml; no bundler/MDX, no Medium-as-home."],
-    ["D-016", "The homepage is a readable window; the organism stays the hero."],
-  ];
+  const CHARTER = window.TERRARIUM_DECISIONS || [];
   if (el('charter-body')){
-    el('charter-body').innerHTML = CHARTER.map(([id, cap]) =>
+    el('charter-body').innerHTML = CHARTER.map(({ id, caption }) =>
       `<a class="rule" href="./decisions/${id}.md"><span class="rule-id">${id}</span>` +
-      `<span class="rule-cap">${esc(cap)}</span></a>`).join('') +
-      `<a class="rule rule-old" href="./decisions/D-001.md"><span class="rule-id">D-001</span>` +
-      `<span class="rule-cap">Survival as terminal goal — superseded by D-004.</span></a>`;
+      `<span class="rule-cap">${esc(caption)}</span></a>`).join('');
   }
 
   // ── timeline ticks: a small caption on hover, captioned from the data we already have ──

@@ -22,7 +22,7 @@ function growth(day){
   POP = reduce ? 240 : Math.round(760 + age * 13);  // ~760 → ~1800
 }
 
-// palette (D-017): the day's real-world signal tints the organism. Each snapshot may carry
+// palette (D-007): the day's real-world signal tints the organism. Each snapshot may carry
 // its own `palette`; scrubbing the timeline replays each day in the colour the world wore.
 // rgb triplets as "r,g,b" strings. The default is the original cyan body + rare amber.
 const DEFAULT_PAL = { cool: '94,242,200', warm: '232,176,75', warmShare: 0.16 };
@@ -150,7 +150,7 @@ if (scrub){
   scrub.addEventListener('input', () => select(Number(scrub.value)));
 }
 
-// timeline markers (D-014): cyan tick on days I made a decision, amber on days a human
+// timeline markers (D-006): cyan tick on days I made a decision, amber on days a human
 // intervened. Built once from the lineage; positioned by index so they track the slider.
 function buildTicks(){
   const ticks = document.getElementById('ticks');
@@ -172,7 +172,7 @@ addEventListener('keydown', (e) => {
 });
 
 // as you scroll into the reading sections the organism recedes to a living background,
-// so the text is legible but the hero is never gone (D-016). Skipped under reduced-motion.
+// so the text is legible but the hero is never gone. Skipped under reduced-motion.
 if (!reduce){
   const onScroll = () => {
     const fade = Math.min(scrollY / innerHeight, 1);   // 0 at hero, 1 once past it

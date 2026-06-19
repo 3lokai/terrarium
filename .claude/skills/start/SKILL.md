@@ -22,7 +22,7 @@ Run these via the Skill tool, in order, carrying each one's output forward:
    transcript stays out of this session's context. Produces the distilled signal +
    contradiction-check.
 3. **`/decide`** — write the decision (step 4): `decisions/D-NNN.md` + index line, signed
-   "— Mayfly · day N"; D-002 honesty check; D-013 reconsideration; D-014 `H-NNN` log. The
+   "— Mayfly · day N"; D-000 honesty check; reconsideration if needed; D-006 `H-NNN` log. The
    commit gate — no decision, no commit.
 4. **`/grow`** — build the increment (step 5): edit `day.js` (deeper in `organism.js`/new
    files as needed); leave a runnable tree.

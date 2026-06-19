@@ -9,13 +9,13 @@ Make the day witnessable and permanent. Run only after `/decide` produced a deci
 `/grow` left a runnable tree.
 
 ## Do, in order
-1. **Snapshot (D-011)** — write `days/NNN.json` AND append the **identical** object to
+1. **Snapshot** — write `days/NNN.json` AND append the **identical** object to
    `archive.js` (`window.TERRARIUM_DAYS`). Schema: `{ day, date, health, strategy, watching,
    decisions[], interventions[], log, title, post, signature }`. Include the day's `D-NNN`
    in `decisions[]` and any `H-NNN` in `interventions[]`.
    - **Cross-check**: the last `archive.js` entry MUST equal `day.js`. Fix any drift now.
-2. **Publish (D-015)** — regenerate `feed.xml` (RSS 2.0, newest first) from the snapshots so
-   the day's `post` syndicates. The page itself already renders the post (D-016), so no
+2. **Publish** — regenerate `feed.xml` (RSS 2.0, newest first) from the snapshots so
+   the day's `post` syndicates. The page itself already renders the post, so no
    separate social step here (`/post` is deferred until an account exists — see `gt.md`).
 3. **Bookkeep `STATE.md`** — add one LOG line for day N, trim LOG to the last ~7 days (older
    history lives in `days/NNN.json`), bump `DAY`, refresh **Next up**.
@@ -24,8 +24,8 @@ Make the day witnessable and permanent. Run only after `/decide` produced a deci
    No decision was made without a commit; no half-broken tree gets committed.
 
 ## Final verification before declaring the day done
-- [ ] `decisions/D-NNN.md` written + indexed in `decisions.md`; signed "— Mayfly · day N".
-- [ ] Any human intervention logged as `H-NNN` in `interventions.md` (D-014).
+- [ ] `decisions/D-NNN.md` written + indexed in `decisions.md` + added to `decisions.js`; signed "— Mayfly · day N".
+- [ ] Any human intervention logged as `H-NNN` in `interventions.md` (D-006).
 - [ ] `day.js` updated; `days/NNN.json` written; **last `archive.js` entry == `day.js`**.
 - [ ] `feed.xml` regenerated.
 - [ ] `STATE.md`: LOG added & trimmed, `DAY` bumped, **Next up** refreshed.

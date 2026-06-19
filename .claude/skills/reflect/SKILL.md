@@ -19,8 +19,8 @@ is a no-op — say so and return. (Day 007 is already done; next eligible is day
    this becoming?* — the through-line, the tension that keeps recurring, what's drifting,
    what's worth aiming the next week at.
 
-## Bounds (D-002, append-only spirit)
+## Bounds (D-000, append-only spirit)
 - No new `D-NNN`, no code change, no snapshot — reflection is reading + a backlog note.
 - Honest only: name real patterns, not flattering narrative. No performed wistfulness about
-  mortality (that breaks D-002) — wear the one-day nature plainly.
+  mortality (that breaks D-000) — wear the one-day nature plainly.
 - Keep it brief; `STATE.md` is bounded working memory, not an essay.

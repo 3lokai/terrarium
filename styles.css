@@ -7,6 +7,7 @@
   --mono:"SFMono-Regular",ui-monospace,"Cascadia Code",Menlo,Consolas,monospace;
   --serif:Georgia,"Times New Roman",serif;
   --pad:clamp(18px,4vw,40px);
+  --panel-bg:linear-gradient(180deg, var(--ink), var(--moss));
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -22,7 +23,7 @@ canvas{
   transition:opacity .5s ease;
 }
 
-main{position:relative;z-index:1}
+main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 
 /* ── hero: the organism is the hero; only the day + today's watching float over it ── */
 .hero{
@@ -95,10 +96,10 @@ main{position:relative;z-index:1}
 .chip-int{color:var(--amber);border-color:rgba(232,176,75,.35);background:rgba(232,176,75,.06)}
 .chip:hover{filter:brightness(1.25)}
 
-/* panel backdrop so prose stays readable as the canvas dims */
+/* opaque panels so prose stays readable over the dimmed organism */
 #today,#journal,#charter{
-  background:linear-gradient(180deg, rgba(7,11,9,.55), rgba(7,11,9,.78));
-  border-radius:14px;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  background:var(--panel-bg);
+  border-radius:14px;
   margin-top:1.5rem;margin-bottom:1.5rem;
   border:1px solid rgba(233,228,214,.06);
 }
@@ -137,33 +138,39 @@ main{position:relative;z-index:1}
 .rule-old{opacity:.45}
 .rule-old .rule-id{color:var(--bone)}
 
-footer{
-  text-align:center;padding:3rem var(--pad) 7rem;font-size:11px;
-  letter-spacing:.08em;opacity:.5;
+/* site footer: timeline scrubber + links on the opaque panel */
+.site-footer{
+  position:fixed;left:0;right:0;bottom:0;z-index:6;
+  background:var(--panel-bg);
+  border-top:1px solid rgba(233,228,214,.06);
 }
-footer a{color:var(--glow);text-decoration:none;opacity:.8}
-footer a:hover{opacity:1}
-footer .made{margin-top:.9rem;opacity:.6;font-style:italic;font-family:var(--serif);font-size:12px}
-
+.site-footer-inner{
+  max-width:720px;margin:0 auto;padding:1.1rem var(--pad) .9rem;text-align:center;
+}
+.footer-links{
+  margin-top:1.1rem;font-size:11px;letter-spacing:.08em;opacity:.7;
+}
+.footer-links a{color:var(--glow);text-decoration:none;opacity:.85}
+.footer-links a:hover{opacity:1}
+.made{
+  margin-top:.65rem;font-size:12px;font-style:italic;font-family:var(--serif);
+  opacity:.55;
+}
 .disclose{
-  position:fixed;left:0;right:0;bottom:7px;text-align:center;z-index:6;
-  font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;
-  opacity:.3;pointer-events:none;mix-blend-mode:screen;
+  margin-top:.45rem;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;
+  opacity:.4;
 }
 @media (prefers-reduced-motion: reduce){ .day b,.entry-title b{color:var(--bone)} }
 
-/* ── timeline scrubber — quiet; the organism stays the hero ── */
+/* ── timeline scrubber — lives in the site footer ── */
 .timeline{
-  position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:6;
-  width:min(46vw,520px);display:flex;flex-direction:column;align-items:center;
-  gap:.5rem;pointer-events:auto;mix-blend-mode:screen;opacity:.5;
-  transition:opacity .35s ease;
+  position:relative;width:100%;max-width:520px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;gap:.45rem;
 }
-.timeline:hover{opacity:.95}
 .stamp{
   font-family:var(--mono);
   font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--bone);opacity:.7;
+  color:var(--bone);opacity:.75;
 }
 .track{position:relative;width:100%}
 #ticks{position:absolute;left:0;right:0;top:50%;height:0;pointer-events:none}
@@ -175,8 +182,8 @@ footer .made{margin-top:.9rem;opacity:.6;font-style:italic;font-family:var(--ser
 #ticks .mark-int{background:var(--amber);opacity:.7;box-shadow:0 0 4px var(--amber);
   top:2px;height:8px}
 .tick-caption{
-  position:absolute;bottom:42px;transform:translateX(-50%);
-  background:rgba(7,11,9,.92);border:1px solid rgba(94,242,200,.25);
+  position:absolute;bottom:calc(100% + .55rem);transform:translateX(-50%);
+  background:var(--moss);border:1px solid rgba(94,242,200,.25);
   color:var(--bone);font-family:var(--mono);font-size:10px;letter-spacing:.04em;
   padding:.4rem .6rem;border-radius:4px;max-width:280px;line-height:1.4;
   opacity:0;pointer-events:none;transition:opacity .18s ease;white-space:normal;text-align:left;
@@ -201,6 +208,6 @@ footer .made{margin-top:.9rem;opacity:.6;font-style:italic;font-family:var(--ser
   canvas{transition:none}
 }
 @media (max-width:600px){
-  .timeline{width:min(80vw,520px)}
   .now{max-width:none}
+  main{padding-bottom:clamp(11rem,28vh,15rem)}
 }
