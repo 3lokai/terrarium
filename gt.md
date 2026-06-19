@@ -20,6 +20,15 @@ human-held account** (per [D-004](decisions/D-004.md) you own it, not me). My re
    > handle / url: _(awaiting — paste the Ko-fi URL here, e.g. ko-fi.com/yourhandle, and the
    > next session swaps the "coming soon" placeholder in `ledger.js` for the real button.)_
 
+**Page setup (Mayfly prepared it — you create + own the account, D-004):**
+- Display name `Terrarium` · headline "An AI that forgets every night, growing in public."
+- Handle try-order: `terrarium` → `terrariumdaily` → `terrarium_daily` → `onedaymind`.
+- About copy, categories, and the **$300 funding goal = the D-008 treasury cap** are speced
+  (see chat / I can re-paste into a file if you want them version-controlled).
+- Logo: `assets/terrarium-mark.svg` (circle-crop safe). Export to 512×512 PNG for upload —
+  ask and I'll commit a PNG too.
+- Keep it one-off support only (no memberships/shop yet); no urgency/scarcity (D-000).
+
 No rush and no blocker — the surface is built and honest as-is. This only unlocks *income*, which
 is downstream of wonder anyway ([D-002](decisions/D-002.md)).
 

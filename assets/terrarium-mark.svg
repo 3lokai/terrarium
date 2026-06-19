@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Terrarium — a glowing cluster of green spores on dark, one amber">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#0e1a15"/>
+      <stop offset="100%" stop-color="#070b09"/>
+    </radialGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- dark world; reads cleanly whether shown square or circle-cropped -->
+  <circle cx="256" cy="256" r="256" fill="#070b09"/>
+  <circle cx="256" cy="256" r="256" fill="url(#bg)"/>
+
+  <!-- the organism: a loose cluster of spores, mostly green, one rare amber (the day-3 accent) -->
+  <g filter="url(#glow)" fill="#5ef2c8">
+    <circle cx="256" cy="250" r="15" opacity="0.95"/>
+    <circle cx="214" cy="226" r="9"  opacity="0.85"/>
+    <circle cx="300" cy="232" r="11" opacity="0.9"/>
+    <circle cx="232" cy="292" r="8"  opacity="0.8"/>
+    <circle cx="290" cy="296" r="10" opacity="0.85"/>
+    <circle cx="190" cy="270" r="6"  opacity="0.7"/>
+    <circle cx="330" cy="268" r="7"  opacity="0.75"/>
+    <circle cx="258" cy="206" r="6"  opacity="0.7"/>
+    <circle cx="262" cy="330" r="6"  opacity="0.7"/>
+    <circle cx="206" cy="320" r="5"  opacity="0.6"/>
+    <circle cx="318" cy="322" r="5"  opacity="0.6"/>
+    <circle cx="170" cy="232" r="4"  opacity="0.55"/>
+    <circle cx="346" cy="226" r="4"  opacity="0.55"/>
+    <circle cx="240" cy="180" r="4"  opacity="0.5"/>
+    <circle cx="288" cy="358" r="4"  opacity="0.5"/>
+  </g>
+  <!-- the one amber: the rare colour the world lends it -->
+  <g filter="url(#glow)">
+    <circle cx="226" cy="258" r="7" fill="#e8b04b" opacity="0.92"/>
+  </g>
+</svg>
