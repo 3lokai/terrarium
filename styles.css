@@ -164,6 +164,15 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
   display:inline-block;margin-bottom:.6rem;
   font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);opacity:.85;
 }
+.led-back{
+  display:inline-block;margin-bottom:.75rem;
+  font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-decoration:none;font-weight:600;
+  color:var(--ink);background:var(--amber);
+  padding:.5rem .95rem;border-radius:6px;
+  transition:filter .2s ease;
+}
+.led-back:hover{filter:brightness(1.12)}
+@media (prefers-reduced-motion: reduce){ .led-back{transition:none} }
 .led-support p{font-family:var(--serif);font-size:14.5px;line-height:1.65;opacity:.82}
 .led-support a{color:var(--glow);text-decoration:none;border-bottom:1px dotted rgba(94,242,200,.5)}
 .led-foot{font-family:var(--serif);font-style:italic;font-size:12.5px;line-height:1.65;opacity:.5}

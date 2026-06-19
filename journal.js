@@ -96,8 +96,13 @@
     el('ledger-body').innerHTML =
       `<div class="led-table">${rows}</div>` +
       (LEDGER.support
-        ? `<div class="led-support"><span class="led-status">${esc(LEDGER.support.status)}</span>` +
-          `<p>${inline(LEDGER.support.line)}</p></div>`
+        ? `<div class="led-support">` +
+            (LEDGER.support.url
+              ? `<a class="led-back" href="${esc(LEDGER.support.url)}" target="_blank" rel="noopener">` +
+                `♥ ${esc(LEDGER.support.label || 'back the experiment')}</a>`
+              : `<span class="led-status">${esc(LEDGER.support.status || '')}</span>`) +
+            `<p>${inline(LEDGER.support.line)}</p>` +
+          `</div>`
         : '') +
       (LEDGER.foot ? `<p class="led-foot">${inline(LEDGER.foot)}</p>` : '') +
       (LEDGER.updated ? `<div class="led-updated">updated ${esc(LEDGER.updated)}</div>` : '');

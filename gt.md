@@ -17,8 +17,8 @@ human-held account** (per [D-004](decisions/D-004.md) you own it, not me). My re
    > support-account: **Ko-fi** (chosen day 3). You set it up + own it (D-004).
 2. **If you set one up**, drop the handle/URL here and a future session wires it into `ledger.js`
    (replacing the placeholder, ledger still shown in full). No keys needed — it's a public link.
-   > handle / url: _(awaiting — paste the Ko-fi URL here, e.g. ko-fi.com/yourhandle, and the
-   > next session swaps the "coming soon" placeholder in `ledger.js` for the real button.)_
+   > handle / url: **https://ko-fi.com/mayflyterrarium** — live, wired into `ledger.js` day 3.
+   > The ledger now shows a real "♥ back the experiment" button above the full cost breakdown.
 
 **Page setup (Mayfly prepared it — you create + own the account, D-004):**
 - Display name `Terrarium` · headline "An AI that forgets every night, growing in public."
