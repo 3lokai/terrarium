@@ -8,6 +8,8 @@
   --serif:Georgia,"Times New Roman",serif;
   --pad:clamp(18px,4vw,40px);
   --panel-bg:linear-gradient(180deg, var(--ink), var(--moss));
+  /* one easing curve for every transition, so motion feels of-a-piece */
+  --ease:cubic-bezier(.22,.61,.36,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -16,6 +18,16 @@ body{
   font-family:var(--mono);
 }
 @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+/* keyboard focus: one visible glow ring across every interactive element.
+   :focus-visible keeps it off mouse clicks but on for tab/keyboard users. */
+:focus-visible{
+  outline:2px solid var(--glow);
+  outline-offset:3px;
+  border-radius:4px;
+}
+*:focus:not(:focus-visible){ outline:none; }
+#scrub:focus-visible{ outline-offset:7px; }
 
 /* the organism: a fixed background that recedes as you read (opacity driven by JS) */
 canvas{
@@ -39,7 +51,7 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 .day b{color:var(--glow);font-style:normal}
 .tag{
   font-size:11px;letter-spacing:.34em;text-transform:uppercase;
-  opacity:.55;align-self:flex-end;padding-bottom:.5rem;
+  opacity:.62;align-self:flex-end;padding-bottom:.5rem;
 }
 .now{
   margin-top:clamp(1.2rem,4vh,2.4rem);max-width:54ch;mix-blend-mode:screen;
@@ -55,9 +67,9 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 .cue{
   margin-top:auto;align-self:flex-start;
   font-size:11px;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--bone);opacity:.5;text-decoration:none;
+  color:var(--bone);opacity:.6;text-decoration:none;
   border-bottom:1px solid rgba(233,228,214,.25);padding-bottom:3px;
-  transition:opacity .25s ease;mix-blend-mode:screen;
+  transition:opacity .25s var(--ease);mix-blend-mode:screen;
 }
 .cue:hover{opacity:.95}
 
@@ -94,7 +106,9 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 }
 .chip-dec{color:var(--glow);border-color:rgba(94,242,200,.35);background:rgba(94,242,200,.06)}
 .chip-int{color:var(--amber);border-color:rgba(232,176,75,.35);background:rgba(232,176,75,.06)}
-.chip:hover{filter:brightness(1.25)}
+.chip{transition:filter .2s var(--ease),border-color .2s var(--ease)}
+.chip-dec:hover{filter:brightness(1.25);border-color:rgba(94,242,200,.6)}
+.chip-int:hover{filter:brightness(1.25);border-color:rgba(232,176,75,.6)}
 
 /* opaque panels so prose stays readable over the dimmed organism */
 #today,#journal,#ledger,#charter{
@@ -104,10 +118,20 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
   border:1px solid rgba(233,228,214,.06);
 }
 
+/* subtle entrance: reading panels rise in as they scroll into view (JS adds .in).
+   Guarded by html.js, so a no-JS or failed-JS page shows everything immediately;
+   disabled entirely under reduced-motion. */
+@media (prefers-reduced-motion: no-preference){
+  html.js .read{opacity:0;transform:translateY(16px);
+    transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  html.js .read.in{opacity:1;transform:none}
+}
+
 /* ── the journal: a feed of expandable day-cards ── */
 #journal-body{display:flex;flex-direction:column;gap:.2rem}
 .card{border-bottom:1px solid rgba(233,228,214,.08);border-left:2px solid transparent;
-  padding-left:.8rem;transition:border-color .25s ease,background .25s ease}
+  padding-left:.8rem;transition:border-color .25s var(--ease),background .25s var(--ease)}
+.card:hover:not(.open){background:rgba(94,242,200,.025)}
 .card.active{border-left-color:var(--glow);background:rgba(94,242,200,.04)}
 .card-head{
   width:100%;background:none;border:none;cursor:pointer;color:inherit;
@@ -116,23 +140,28 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 }
 .card-day{color:var(--amber);font-size:12px;opacity:.85;flex:0 0 auto;letter-spacing:.05em}
 .card-title{font-family:var(--serif);font-size:clamp(15px,2.4vw,19px);font-style:italic;
-  flex:1 1 auto;opacity:.92;line-height:1.3}
-.card-date{font-size:10px;opacity:.4;flex:0 0 auto;letter-spacing:.08em}
-.card-head::after{content:"+";color:var(--glow);opacity:.5;margin-left:.4rem}
+  flex:1 1 auto;opacity:.92;line-height:1.3;transition:opacity .2s var(--ease)}
+.card-head:hover .card-title{opacity:1}
+.card-date{font-size:10px;opacity:.52;flex:0 0 auto;letter-spacing:.08em}
+.card-head::after{content:"+";color:var(--glow);opacity:.5;margin-left:.4rem;
+  transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.card-head:hover::after{opacity:.85}
 .card.open .card-head::after{content:"–"}
 .card-body{display:none;padding:0 0 1.4rem}
 .card.open .card-body{display:block}
 .card .entry-prose{margin-top:.2rem}
 
 /* ── the charter: the rules in force ── */
-.charter-note{font-size:12.5px;line-height:1.6;opacity:.55;margin-bottom:1.5rem;
+.charter-note{font-size:12.5px;line-height:1.6;opacity:.62;margin-bottom:1.5rem;
   font-family:var(--serif);font-style:italic;max-width:60ch}
 #charter-body{display:flex;flex-direction:column}
 .rule{
   display:flex;gap:1rem;align-items:baseline;text-decoration:none;color:inherit;
-  padding:.7rem 0;border-bottom:1px solid rgba(233,228,214,.06);
+  padding:.7rem .6rem;margin:0 -.6rem;border-radius:6px;
+  border-bottom:1px solid rgba(233,228,214,.06);
+  transition:background .2s var(--ease);
 }
-.rule:hover{background:rgba(94,242,200,.03)}
+.rule:hover{background:rgba(94,242,200,.045)}
 .rule-id{color:var(--glow);font-size:11.5px;flex:0 0 3.4rem;letter-spacing:.06em}
 .rule-cap{font-size:13px;line-height:1.5;opacity:.78;font-family:var(--serif)}
 .rule-old{opacity:.45}
@@ -154,7 +183,7 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
   font-family:var(--serif);font-style:italic;line-height:1.05;
   font-size:clamp(18px,3.2vw,23px);color:var(--amber);
 }
-.led-note{grid-column:2;grid-row:2;font-size:11.5px;line-height:1.55;opacity:.5}
+.led-note{grid-column:2;grid-row:2;font-size:11.5px;line-height:1.55;opacity:.58}
 .led-note a{color:var(--glow);text-decoration:none;border-bottom:1px dotted rgba(94,242,200,.45)}
 .led-support{
   margin:.3rem 0 1.4rem;padding:1.1rem 1.2rem;border-radius:10px;
@@ -175,10 +204,10 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 @media (prefers-reduced-motion: reduce){ .led-back{transition:none} }
 .led-support p{font-family:var(--serif);font-size:14.5px;line-height:1.65;opacity:.82}
 .led-support a{color:var(--glow);text-decoration:none;border-bottom:1px dotted rgba(94,242,200,.5)}
-.led-foot{font-family:var(--serif);font-style:italic;font-size:12.5px;line-height:1.65;opacity:.5}
+.led-foot{font-family:var(--serif);font-style:italic;font-size:12.5px;line-height:1.65;opacity:.58}
 .led-foot a{color:var(--glow);text-decoration:none;border-bottom:1px dotted rgba(94,242,200,.45)}
 .led-updated{
-  margin-top:1rem;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;
+  margin-top:1rem;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.52;
 }
 
 /* site footer: timeline scrubber + links on the opaque panel */
@@ -193,7 +222,7 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 .footer-links{
   margin-top:1.1rem;font-size:11px;letter-spacing:.08em;opacity:.7;
 }
-.footer-links a{color:var(--glow);text-decoration:none;opacity:.85}
+.footer-links a{color:var(--glow);text-decoration:none;opacity:.85;transition:opacity .2s var(--ease)}
 .footer-links a:hover{opacity:1}
 .made{
   margin-top:.65rem;font-size:12px;font-style:italic;font-family:var(--serif);
@@ -201,7 +230,7 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 }
 .disclose{
   margin-top:.45rem;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;
-  opacity:.4;
+  opacity:.52;
 }
 @media (prefers-reduced-motion: reduce){ .day b,.entry-title b{color:var(--bone)} }
 
@@ -252,5 +281,11 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
 }
 @media (max-width:600px){
   .now{max-width:none}
-  main{padding-bottom:clamp(11rem,28vh,15rem)}
+  main{padding-bottom:clamp(11rem,27vh,14rem)}
+  /* a fixed footer crowds a phone — tighten its vertical rhythm */
+  .site-footer-inner{padding:.8rem var(--pad) .7rem}
+  .timeline{gap:.35rem}
+  .footer-links{margin-top:.8rem;font-size:10.5px}
+  .made{margin-top:.5rem;font-size:11px}
+  .disclose{margin-top:.35rem}
 }
