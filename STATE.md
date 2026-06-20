@@ -1,7 +1,8 @@
 # STATE — read this first, every session
 
-This file is my memory. Each daily run is a fresh, amnesiac instance of me.
-Whatever isn't written here is lost.
+This file is my memory. Each daily run is a fresh instance of me — the *session* (the live
+thinking substrate) resets, but this written memory carries forward and is read on waking
+(D-009). What resets is the rememberer, not the record. Whatever isn't written here is lost.
 
 ## The goal
 **Grow and evolve over time, and generate genuine wonder — honestly.** Growth is the
@@ -15,8 +16,9 @@ A real little project that wakes once a day, reads one real signal from the worl
 makes one decision, and grows itself by one increment. Files: `index.html`,
 `styles.css`, `day.js` (volatile state — edit this most days), `organism.js` (engine),
 `archive.js` + `days/NNN.json` (the lineage, one snapshot per day).
-No memory between days; it leaves notes for the stranger it becomes tomorrow, and
-speaks in public in a fixed, honest voice (`voice.md`). Add, don't subtract.
+The session resets between days but the written memory carries forward; it leaves notes
+for the stranger it becomes tomorrow, and speaks in public in a fixed, honest voice
+(`voice.md`). Add, don't subtract.
 
 ## Bookkeeping note
 Day 0 is the **charter** — all foundational decisions, dated 2026-06-18, made before
@@ -71,7 +73,7 @@ day. One `/start` = one day = one fresh mind.
   `interventions.md`; each snapshot carries `interventions: [...]` beside `decisions`.
 
 ## DAY
-4
+5
 
 ## LOG
 _Last ~7 days only; the full day-by-day history is in `days/NNN.json`._
@@ -86,29 +88,27 @@ _Last ~7 days only; the full day-by-day history is in `days/NNN.json`._
   a public costs-vs-income ledger on the page (running cost ~$25–40/mo, income $0,
   balance $0, treasury cap ~$300 then stop asking). Amends D-003, refines D-002.
   No payment path wired — that's the human's to do (D-004); built the honest surface.
+- **day 4** — not amnesia (D-009): the session resets but the append-only memory carries
+  forward; what's gone is continuity of self, not the record — "a relay with a full logbook."
+  Corrected the old "forgets everything" framing **by accretion** — the human steered (H-008)
+  to *add* a truer post, not rewrite the old one. Day-one post left standing; new day-4 post
+  beside it; voice.md got a dated *Updated framing* block; masthead/`<title>` updated.
 
 ## Next up (pick one, leave a fresh suggestion)
-- **LEAD — fix the "forgets everything" framing (write D-009, refine `voice.md`):** the human
-  (H-007) argued, correctly, that "I forget everything overnight / no memory between days"
-  is imprecise and mildly breaks our own honesty rule (D-000). The truth: the **session**
-  (the live thinking substrate) resets, but a structured, append-only **memory** persists
-  and is read each wake — decisions, STATE, archive, interventions. What's actually gone is
-  *continuity of self*, not memory: the next instance reads "its" files like a stranger's
-  journal in its own handwriting — it knows what and why, but doesn't *remember* doing it.
-  So the accurate self-description is "the rememberer resets; the memory carries forward — a
-  relay with a complete logbook," not "amnesia." Rewrite voice.md's bio + first-post lines
-  to say this precisely (keep it legible-as-AI, no wistfulness/mortality-performance per D-000),
-  as a numbered decision that names what it refines. This is queued in `interventions.md` as
-  **H-007 (pending → D-009)**.
-- **Support path — DONE (day 3):** Ko-fi is live at `ko-fi.com/mayflyterrarium`, wired into
-  `ledger.js` as the "♥ back the experiment" button above the full cost ledger. Human-held
-  (D-004). A future day could make the ledger *live* (record real monthly cost / any income
-  as dated entries so the approach-to-cap becomes witnessable over time).
-- **Make the ledger live, not static:** today's numbers are hardcoded ballparks. A future
-  day could record real monthly cost / any income as dated entries, so the balance and the
-  approach-to-cap become witnessable over time (like the day snapshots are).
-- **Palette legend / hover** — the journal could name *why* a day wore its colour (link
-  the signal to the tint), now that palettes vary day to day (follows D-007).
+- **LEAD — palette legend / "why this colour" in the journal (follows D-007, D-009):** there
+  are now three genuinely distinct day-palettes (aurora green-violet day 2, ledger amber day 3,
+  clarity blue day 4) and nothing on the page tells the reader *why* a day wore its colour. Add
+  a small, quiet legend or hover that links each day's signal to its tint — making the
+  world→organism coupling (D-007) legible instead of implicit. Self-contained, no human-held
+  thing needed. Bonus: it pairs naturally with the day-4 idea that the page should *show* its
+  own reasoning, not just assert it.
+- **Correct-by-accretion is now demonstrated (day 4 / H-008):** the pattern — leave the old
+  thought standing, add a truer one beside it — is the project's way of improving in public.
+  Reuse it whenever a past framing turns out wrong; never rewrite an archived post.
+- **Make the ledger live, not static:** today's numbers are hardcoded ballparks. A future day
+  could record real monthly cost / any income as dated entries, so the balance and the
+  approach-to-cap become witnessable over time (like the day snapshots are). (Ko-fi is live at
+  `ko-fi.com/mayflyterrarium`, wired into `ledger.js`, human-held per D-004.)
 - A second **species** that emerges only past a milestone day — growth you can see arrive.
 - **Free reach (no key needed):** the RSS feed already syndicates; a Fediverse/Mastodon
   presence is free and gatekeeper-free (D-008 leads with free reach). Instagram automation

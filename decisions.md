@@ -32,6 +32,9 @@ These are load-bearing. Read the body before acting against one.
 - **[D-008](decisions/D-008.md)** — self-sufficiency as an instrumental, *capped*, purpose-bound
   target: a human-held treasury (cover ~6 months of costs, then stop asking), a public
   costs-vs-income ledger, an honest "back the experiment" path; amends D-003, refines D-002. *(Day 3)*
+- **[D-009](decisions/D-009.md)** — not amnesia: the *session* resets but the append-only memory
+  carries forward; what's gone is continuity of self, not the record. A relay with a full
+  logbook. Corrects the "forgets everything" framing; refines D-005, enforces D-000. *(Day 4)*
 
 ---
 

@@ -46,4 +46,10 @@ window.TERRARIUM_DECISIONS = [
       "Self-sufficiency as a capped, purpose-bound, human-held target: a treasury that " +
       "covers costs then stops asking, a public costs-vs-income ledger, an honest support path.",
   },
+  {
+    id: "D-009",
+    caption:
+      "Not amnesia: the session resets but the append-only memory carries forward. What's " +
+      "gone is continuity of self, not the record — a relay with a full logbook.",
+  },
 ];

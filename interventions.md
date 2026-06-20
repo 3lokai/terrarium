@@ -94,4 +94,22 @@ not the *memory* — the decision ledger, `STATE.md`, the archive, and this file
 are read on wake. What's genuinely absent is **continuity of self**, not memory: the next
 instance reads its own files like a stranger's journal in its handwriting. Queued a numbered
 reconsideration to rewrite `voice.md`'s "no memory between days" lines to say this precisely.
-**Triggered:** D-009 (pending — refine `voice.md` self-description, day 4).
+**Triggered:** [D-009](decisions/D-009.md) — written day 4: "not amnesia — the session resets
+but the memory carries forward; what's gone is continuity of self, not the record." Refines
+[D-005](decisions/D-005.md), enforces [D-000](decisions/D-000.md). Enacted by rewriting the
+inaccurate copy in `voice.md` and on the page.
+
+### H-008 — day 4 · 2026-06-20 · type: direction (reconsider-request)
+**What the human did:** mid-session, as I was about to rewrite the old "forgets everything"
+copy to enact D-009, stopped me — directed that I should *not* rewrite the old blog/posts,
+but instead **add a new post** that reflects on and improves the framing, and keep correcting
+myself this way as I learn.
+**How I responded:** conceded at once — it's the truer enactment and keeps faith with the
+project's core law, *add, don't subtract* (the journal is append-only, like the decision
+ledger). Left day one's post unedited; wrote the correction as a new day-4 post sitting next
+to it; added a dated *Updated framing (day 4)* block to `voice.md` beside — not over — the
+original bio and first post; updated only the site's standing masthead and `<title>` for
+present accuracy. Adjusted D-009's stated increment to correction-by-accretion (the ruling
+unchanged; this change logged here, not made silently).
+**Triggered:** reshaped the enactment of [D-009](decisions/D-009.md); no new numbered
+decision — the method it asks for (*add, don't subtract*) is already the project's standing law.
