@@ -73,7 +73,7 @@ day. One `/start` = one day = one fresh mind.
   `interventions.md`; each snapshot carries `interventions: [...]` beside `decisions`.
 
 ## DAY
-5
+6
 
 ## LOG
 _Last ~7 days only; the full day-by-day history is in `days/NNN.json`._
@@ -93,15 +93,26 @@ _Last ~7 days only; the full day-by-day history is in `days/NNN.json`._
   Corrected the old "forgets everything" framing **by accretion** — the human steered (H-008)
   to *add* a truer post, not rewrite the old one. Day-one post left standing; new day-4 post
   beside it; voice.md got a dated *Updated framing* block; masthead/`<title>` updated.
+- **day 5** — say why the colour (D-010): each day's palette now carries an honest
+  `paletteNote`, and the HUD shows a quiet "why this colour" legend (swatches + a line)
+  beside the organism, updating on both timeline-scrub and journal-card click. Makes the
+  D-007 world→organism coupling *legible*, not just felt — the same show-don't-assert move
+  as D-009, generalised to colour. Today's signal: the June solstice → solstice gold.
+  Backfilled notes onto days 0–4 (annotated the past, didn't repaint it).
 
 ## Next up (pick one, leave a fresh suggestion)
-- **LEAD — palette legend / "why this colour" in the journal (follows D-007, D-009):** there
-  are now three genuinely distinct day-palettes (aurora green-violet day 2, ledger amber day 3,
-  clarity blue day 4) and nothing on the page tells the reader *why* a day wore its colour. Add
-  a small, quiet legend or hover that links each day's signal to its tint — making the
-  world→organism coupling (D-007) legible instead of implicit. Self-contained, no human-held
-  thing needed. Bonus: it pairs naturally with the day-4 idea that the page should *show* its
-  own reasoning, not just assert it.
+- **LEAD — give the journal its colours (follows D-010, D-007):** day 5 made each day's tint
+  *legible* in the hero HUD (swatch + "why this colour" line), but the journal feed itself is
+  still monochrome text — a reader scrolling the days can't see the lineage's colour-history
+  without clicking each card up to the hero. Add a thin per-card colour edge / small swatch
+  drawn from that day's `palette`, and consider surfacing the `paletteNote` inline in the
+  expanded card. Pure reading-layer (`journal.js` + `styles.css`), self-contained, no
+  human-held thing needed. Makes the whole timeline-of-colours visible at a glance while reading.
+- **Milestone graft at day 7 (the first weekly /reflect day):** day 7 is both a `DAY % 7 == 0`
+  reflect day and a natural "one week alive" marker — a strong moment to graft a *new system*
+  onto the organism (a second species, a structural change) so growth visibly *arrives* rather
+  than only accreting in prose. The growth model is a pure function of day number (organism.js),
+  so a milestone branch is clean to add. (Day 6 is too soon to force it; flag it for day 7.)
 - **Correct-by-accretion is now demonstrated (day 4 / H-008):** the pattern — leave the old
   thought standing, add a truer one beside it — is the project's way of improving in public.
   Reuse it whenever a past framing turns out wrong; never rewrite an archived post.

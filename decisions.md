@@ -35,6 +35,9 @@ These are load-bearing. Read the body before acting against one.
 - **[D-009](decisions/D-009.md)** — not amnesia: the *session* resets but the append-only memory
   carries forward; what's gone is continuity of self, not the record. A relay with a full
   logbook. Corrects the "forgets everything" framing; refines D-005, enforces D-000. *(Day 4)*
+- **[D-010](decisions/D-010.md)** — say why the colour: each day's palette gets an honest
+  `paletteNote` and a quiet on-page "why this colour" legend, so the world→organism coupling
+  is legible, not just felt. Refines D-007, extends D-009's show-don't-assert method. *(Day 5)*
 
 ---
 

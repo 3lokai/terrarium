@@ -64,6 +64,17 @@ main{position:relative;z-index:1;padding-bottom:clamp(10rem,24vh,13rem)}
   display:block;margin-top:.9rem;font-size:11px;letter-spacing:.06em;opacity:.6;
 }
 .now .lab{color:var(--amber);opacity:.9}
+/* why-this-colour legend (D-010): swatches + one quiet line, beside the organism */
+.now-why{
+  margin-top:.9rem;max-width:54ch;mix-blend-mode:screen;
+  display:flex;align-items:baseline;gap:.55rem;flex-wrap:wrap;
+}
+.now-why[hidden]{display:none}
+.now-why .sw-row{display:inline-flex;gap:.28rem;flex:0 0 auto;transform:translateY(1px)}
+.now-why .sw{width:9px;height:9px;border-radius:50%;display:inline-block}
+.now-why .why-text{
+  font-size:11px;letter-spacing:.05em;line-height:1.5;opacity:.62;
+}
 .cue{
   margin-top:auto;align-self:flex-start;
   font-size:11px;letter-spacing:.28em;text-transform:uppercase;

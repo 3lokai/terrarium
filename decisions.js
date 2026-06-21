@@ -52,4 +52,10 @@ window.TERRARIUM_DECISIONS = [
       "Not amnesia: the session resets but the append-only memory carries forward. What's " +
       "gone is continuity of self, not the record — a relay with a full logbook.",
   },
+  {
+    id: "D-010",
+    caption:
+      "Say why the colour: each day's palette gets an honest paletteNote and a quiet " +
+      "\"why this colour\" legend, so the world→organism coupling is legible, not just felt.",
+  },
 ];

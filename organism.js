@@ -122,6 +122,26 @@ function paintHUD(index){
       `&nbsp;&nbsp;·&nbsp;&nbsp;<span class="lab">health</span> ${hearts}` +
       `&nbsp;&nbsp;·&nbsp;&nbsp;${s.signature}</span>`;
   }
+
+  // why-this-colour legend (D-010): name the signal the day's palette is drawn from, right
+  // beside the organism. Swatches show the actual spore colours; the note says why. It updates
+  // on every selection — scrubbing the timeline OR clicking a journal card — so the
+  // world→organism coupling (D-007) is legible, not just felt.
+  const why = document.getElementById('palette-why');
+  if (why){
+    if (s.paletteNote){
+      const pal = { ...DEFAULT_PAL, ...(s.palette || {}) };
+      const dot = rgb => `<i class="sw" style="background:rgb(${rgb})"></i>`;
+      let swatches = dot(pal.cool);
+      if (pal.warm   && (pal.warmShare   ?? 0) > 0) swatches += dot(pal.warm);
+      if (pal.accent && (pal.accentShare ?? 0) > 0) swatches += dot(pal.accent);
+      why.innerHTML = `<span class="sw-row" aria-hidden="true">${swatches}</span>` +
+        `<span class="why-text">${s.paletteNote}</span>`;
+      why.hidden = false;
+    } else {
+      why.hidden = true;
+    }
+  }
 }
 
 // ── timeline scrubber ───────────────────────────────
